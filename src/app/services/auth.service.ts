@@ -10,6 +10,12 @@ export class AuthService {
     public auth: AngularFireAuth,
   ) { }
 
+  initAuthListener() {
+    this.auth.authState.subscribe(firebaseUser => {
+      
+    });
+  }
+
   createUser(name: string, email: string, password: string) {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
