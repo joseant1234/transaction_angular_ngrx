@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "transactionapp-39b11": {
+      "hosting": {
+        "transactionapp": [
+          "transactionapp-39b11"
+        ]
+      }
+    }
+  }
+}
