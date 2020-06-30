@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   initAuthListener() {
     this.auth.authState.subscribe(firebaseUser => {
-      
+
     });
   }
 
@@ -26,5 +27,11 @@ export class AuthService {
 
   logout() {
     return this.auth.signOut();
+  }
+
+  isAuth() {
+    return this.auth.authState.pipe(
+      map(firebaseUser => !!firebaseUser)
+    )
   }
 }
