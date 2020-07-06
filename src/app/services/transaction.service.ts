@@ -25,7 +25,7 @@ export class TransactionService {
 
   initTransactionsListener(uid: string) {
     // con el snapshotChanges se obtiene el type y el payload (documento y el id)
-    this.firestore.collection(`${uid}/transactions/items`)
+    return this.firestore.collection(`${uid}/transactions/items`)
     .snapshotChanges()
     .pipe(
       map(snapshot => {
@@ -36,9 +36,6 @@ export class TransactionService {
           }
         });
       })
-    )
-    .subscribe(res => {
-      console.log(res)
-    })
+    )    
   }
 }

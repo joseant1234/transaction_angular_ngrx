@@ -4,6 +4,7 @@ import { AppState } from '../app.reducer';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { TransactionService } from '../services/transaction.service';
+import * as actions from '../transaction/transaction.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
       filter(auth => auth.user != null),
       takeUntil(this.unsubscribe),
     ).subscribe(({user}) => {
-      this.transactionService.initTransactionsListener(user.uid)
+      this.transactionService.initTransactionsListener(user.uid).pipe(
+        takeUntil(this.unsubscribe),
+      ).subscribe(transactionsFromFirebase => {
+        this.store.dispatch(actions.setItems({ items: transactionsFromFirebase}));
+      });
     })
   }
 
