@@ -4,6 +4,8 @@ import { AppState } from '../../app.reducer';
 import { Transaction } from '../../models/transaction.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TransactionService } from '../../services/transaction.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail',
@@ -17,7 +19,8 @@ export class DetailComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject();
 
   constructor(
-    private readonly store: Store<AppState>
+    private readonly store: Store<AppState>,
+    private readonly transactionService: TransactionService,
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +37,13 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   remove(uid: string): void {
-
+    this.transactionService.removeTransaction(uid)
+    .then(() => {
+      Swal.fire('Borrado', 'Item borrado', 'success');
+    })
+    .catch(err => {
+      Swal.fire('Error', err.message, 'error');
+    });
   }
 
 }

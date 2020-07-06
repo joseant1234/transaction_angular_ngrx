@@ -18,9 +18,10 @@ export class TransactionService {
 
   create(transaction: Transaction) {
     const uid = this.authService.user.uid;
+    const mappedTransaction = { description: transaction.description, amount: transaction.amount, type: transaction.type}
     return this.firestore.doc(`${uid}/transactions`)
       .collection('items')
-      .add({...transaction});
+      .add({...mappedTransaction});
   }
 
   initTransactionsListener(uid: string) {
@@ -36,6 +37,11 @@ export class TransactionService {
           }
         });
       })
-    )    
+    )
+  }
+
+  removeTransaction(uidItem: string) {
+    const uid = this.authService.user.uid;
+    return this.firestore.doc(`${uid}/transactions/items/${uidItem}`).delete();
   }
 }
