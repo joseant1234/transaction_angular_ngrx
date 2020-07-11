@@ -19,6 +19,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './app.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SortTransactionsPipe } from './pipes/sort-transactions.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     DetailComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SortTransactionsPipe
   ],
   imports: [
     BrowserModule,

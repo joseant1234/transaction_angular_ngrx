@@ -18,10 +18,11 @@ export class TransactionService {
 
   create(transaction: Transaction) {
     const uid = this.authService.user.uid;
-    const mappedTransaction = { description: transaction.description, amount: transaction.amount, type: transaction.type}
+    // const mappedTransaction = { description: transaction.description, type: transaction.type, amount: transaction.amount } as Transaction
+    delete transaction.uid;
     return this.firestore.doc(`${uid}/transactions`)
       .collection('items')
-      .add({...mappedTransaction});
+      .add({...transaction});
   }
 
   initTransactionsListener(uid: string) {
