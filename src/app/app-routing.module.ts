@@ -6,14 +6,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { dashboardRoutes } from './dashboard/dahsboard.routes';
 import { AuthGuard } from './services/auth.guard';
 
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  // {
+  //   path: '',
+  //   component: DashboardComponent,
+  //   children: dashboardRoutes,
+  //   canActivate: [AuthGuard]
+  // },
   {
     path: '',
-    component: DashboardComponent,
-    children: dashboardRoutes,
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+    canLoad: [AuthGuard]
   },
   { path: '**', redirectTo: '' }
 ]
