@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../app.reducer';
+import { AppStateWithTransaction } from '../transaction.reducer';
 import { Transaction } from '../../models/transaction.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject();
 
   constructor(
-    private readonly store: Store<AppState>,
+    private readonly store: Store<AppStateWithTransaction>,
     private readonly transactionService: TransactionService,
   ) { }
 

@@ -6,11 +6,11 @@ import * as transaction from './transaction/transaction.reducer';
 export interface AppState {
   ui: ui.State,
   user: auth.State,
-  transactions: transaction.State,
+  // transactions: transaction.State,
 };
 
 export const appReducers: ActionReducerMap<AppState> = {
   ui: ui.uiReducer,
   user: auth.authReducer,
-  transactions: transaction.transactionReducer,
+  // transactions: transaction.transactionReducer,
 }

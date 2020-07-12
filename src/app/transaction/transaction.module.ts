@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutesModule } from '../dashboard/dashboard-routes.module';
+import { StoreModule } from '@ngrx/store';
+import { transactionReducer } from './transaction.reducer';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,11 @@ import { DashboardRoutesModule } from '../dashboard/dashboard-routes.module';
   ],
   imports: [
     CommonModule,
+    StoreModule.forFeature('transactions', transactionReducer),
     ReactiveFormsModule,
     ChartsModule,
     SharedModule,
-    DashboardRoutesModule,  
+    DashboardRoutesModule,
   ]
 })
 export class TransactionModule { }
