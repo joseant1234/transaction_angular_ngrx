@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { Transaction } from 'src/app/models/transaction.model';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-statistics',
@@ -14,6 +16,9 @@ export class StatisticsComponent implements OnInit {
   expenses = 0;
   totalIncomes = 0;
   totalExpenses = 0;
+  public doughnutChartLabels: Label[] = ['Ingresos', 'Egresos'];
+  public doughnutChartData: MultiDataSet = [[]];
+  public doughnutChartType: ChartType = 'doughnut';
 
   constructor(
     private readonly store: Store<AppState>
@@ -37,6 +42,8 @@ export class StatisticsComponent implements OnInit {
         this.expenses ++;
       }
     }
+
+    this.doughnutChartData = [ [this.totalIncomes, this.totalExpenses]];
   }
 
 }
