@@ -6,9 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { StatisticsComponent } from './transaction/statistics/statistics.component';
 import { DetailComponent } from './transaction/detail/detail.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
@@ -28,9 +26,6 @@ import { ChartsModule } from 'ng2-charts';
     TransactionComponent,
     StatisticsComponent,
     DetailComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
     SortTransactionsPipe
   ],
   imports: [
@@ -48,6 +43,7 @@ import { ChartsModule } from 'ng2-charts';
     }),
     ChartsModule,
     AuthModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
