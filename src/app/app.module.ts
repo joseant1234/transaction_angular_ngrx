@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthModule } from './auth/auth.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { StatisticsComponent } from './transaction/statistics/statistics.component';
 import { DetailComponent } from './transaction/detail/detail.component';
@@ -25,8 +24,6 @@ import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     TransactionComponent,
     StatisticsComponent,
@@ -50,6 +47,7 @@ import { ChartsModule } from 'ng2-charts';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     ChartsModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
